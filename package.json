@@ -6,8 +6,11 @@
   "scripts": {
     "dev": "vite --port 3000 --open",
     "build": "tsc -b && vite build",
+    "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "prettier": "prettier ./src --write",
+    "ts:check": "tsc",
+    "husky:set-hooks": "husky && echo \"npm run ts:check && npx lint-staged\" > .husky/pre-commit"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
