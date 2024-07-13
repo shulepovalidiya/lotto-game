@@ -51,6 +51,16 @@ button {
   color: #000000;
 }
 
+button:disabled {
+  background-color: #dddddd;
+  color: grey;
+  cursor: not-allowed;
+}
+
+button:disabled:hover {
+  background-color: #dddddd;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

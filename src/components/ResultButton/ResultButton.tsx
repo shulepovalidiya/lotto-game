@@ -7,6 +7,9 @@ const Button = styled.button`
   border-radius: 40px;
   background-color: #ffffff;
   border: 1px solid #dddddd;
+  &:hover {
+    background-color: #ffd205;
+  }
 `;
 
 const Text = styled.span`
