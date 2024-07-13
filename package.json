@@ -10,7 +10,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prettier": "prettier ./src --write",
     "ts:check": "tsc",
-    "husky:set-hooks": "husky && echo \"npm run ts:check && npx lint-staged\" > .husky/pre-commit"
+    "husky:set-hooks": "husky && echo \"npm run ts:check && npx lint-staged\" > .husky/pre-commit",
+    "prepare": "husky"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
