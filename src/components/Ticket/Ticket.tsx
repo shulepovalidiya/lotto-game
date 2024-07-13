@@ -7,6 +7,8 @@ import {
 } from '../../common/constants/tickets.ts';
 import { MagicWand } from '../MagicWand/MagicWand.tsx';
 import { useNumberSelection } from '../../common/hooks/useNumberSelection.ts';
+import { isWinningCombination } from '../../features/isWinningCombination.ts';
+import { generateWinningCombination } from '../../features/generateWinningCombination.ts';
 
 interface TicketProps {
   id: number;
@@ -46,6 +48,13 @@ export function Ticket({ id }: TicketProps) {
   const firstField = useNumberSelection(FIRST_FIELD_CONFIG.selectedCellCount);
   const secondField = useNumberSelection(SECOND_FIELD_CONFIG.selectedCellCount);
 
+  const handleResultClick = () => {
+    isWinningCombination(
+      [firstField.selectedNumbers, secondField.selectedNumbers],
+      generateWinningCombination([FIRST_FIELD_CONFIG, SECOND_FIELD_CONFIG]),
+    );
+  };
+
   return (
     <Wrapper>
       <Header>
@@ -66,6 +75,7 @@ export function Ticket({ id }: TicketProps) {
         disabled={
           !firstField.isSelectionCompleted || !secondField.isSelectionCompleted
         }
+        onClick={handleResultClick}
       />
     </Wrapper>
   );
