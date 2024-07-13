@@ -6,6 +6,7 @@ import {
   SECOND_FIELD_CONFIG,
 } from '../../common/constants/tickets.ts';
 import { MagicWand } from '../MagicWand/MagicWand.tsx';
+import { useNumberSelection } from '../../common/hooks/useNumberSelection.ts';
 
 interface TicketProps {
   id: number;
@@ -42,15 +43,30 @@ const Header = styled.div`
 `;
 
 export function Ticket({ id }: TicketProps) {
+  const firstField = useNumberSelection(FIRST_FIELD_CONFIG.selectedCellCount);
+  const secondField = useNumberSelection(SECOND_FIELD_CONFIG.selectedCellCount);
+
   return (
     <Wrapper>
       <Header>
         <Heading>{`Билет ${id}`}</Heading>
         <MagicWand />
       </Header>
-      <Field config={FIRST_FIELD_CONFIG} number={1} />
-      <Field config={SECOND_FIELD_CONFIG} number={2} />
-      <ResultButton />
+      <Field
+        config={FIRST_FIELD_CONFIG}
+        number={1}
+        selectionInfo={firstField}
+      />
+      <Field
+        config={SECOND_FIELD_CONFIG}
+        number={2}
+        selectionInfo={secondField}
+      />
+      <ResultButton
+        disabled={
+          !firstField.isSelectionCompleted || !secondField.isSelectionCompleted
+        }
+      />
     </Wrapper>
   );
 }

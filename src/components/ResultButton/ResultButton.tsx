@@ -16,9 +16,9 @@ const Text = styled.span`
   max-width: 100%;
 `;
 
-export function ResultButton() {
+export function ResultButton({ disabled }: { disabled: boolean }) {
   return (
-    <Button type="submit">
+    <Button type="submit" disabled={disabled}>
       <Text>Показать результат</Text>
     </Button>
   );

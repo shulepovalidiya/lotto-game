@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { generateNaturalSeries } from '../../common/utils/generateNaturalSeries.ts';
 import { Cell } from '../Cell/Cell.tsx';
 import { pluralize } from '../../common/utils/pluralize.ts';
+import { UseNumberSelection } from '../../common/hooks/useNumberSelection.ts';
 
 export interface IFieldConfig {
   totalCellCount: number;
@@ -11,14 +12,14 @@ export interface IFieldConfig {
 interface FieldProps {
   config: IFieldConfig;
   number: number;
+  selectionInfo: UseNumberSelection;
 }
 
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, 39px);
   grid-template-rows: repeat(auto-fill, 39px);
-  justify-content: center;
-  align-items: center;
+  place-items: center;
   width: 274px;
   height: 100%;
   box-sizing: border-box;
@@ -50,7 +51,7 @@ const Header = styled.div`
   gap: 10px;
 `;
 
-export function Field({ config, number }: FieldProps) {
+export function Field({ config, number, selectionInfo }: FieldProps) {
   const { totalCellCount, selectedCellCount } = config;
   const series = generateNaturalSeries(totalCellCount);
 
@@ -68,7 +69,12 @@ export function Field({ config, number }: FieldProps) {
       </Header>
       <GridContainer>
         {series.map((integer) => (
-          <Cell key={integer} number={integer} />
+          <Cell
+            key={integer}
+            number={integer}
+            selected={selectionInfo.selectedNumbers.includes(integer)}
+            handleClick={selectionInfo.toggleNumber}
+          />
         ))}
       </GridContainer>
     </>
