@@ -1,14 +1,12 @@
-import styled from 'styled-components';
+import * as Styled from './styles.ts';
 
-const Button = styled.button`
-  border: none;
-  padding: 0;
-  background-color: transparent;
-`;
+interface MagicWandProps {
+  onClick: () => void;
+}
 
-export function MagicWand() {
+export function MagicWand({ onClick }: MagicWandProps) {
   return (
-    <Button type="button">
+    <Styled.Button type="button" onClick={onClick}>
       <svg
         width="18"
         height="18"
@@ -23,6 +21,6 @@ export function MagicWand() {
           fill="black"
         />
       </svg>
-    </Button>
+    </Styled.Button>
   );
 }

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Button = styled.button`
+export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,17 +12,9 @@ const Button = styled.button`
   }
 `;
 
-const Text = styled.span`
+export const Text = styled.span`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   max-width: 100%;
 `;
-
-export function ResultButton({ disabled, onClick }: { disabled: boolean; onClick: () => void }) {
-  return (
-    <Button type="submit" disabled={disabled} onClick={onClick}>
-      <Text>Показать результат</Text>
-    </Button>
-  );
-}

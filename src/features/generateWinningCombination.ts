@@ -1,13 +1,14 @@
-import { IFieldConfig } from '../components/Field/Field.tsx';
-
 /**
  * Функция генерирует случайную выигрышную комбинацию
  *
  * @param fields - массив с настройками полей
  * @returns {number[][]} - массив с выигрышными числами в каждом поле
  */
+import { IFieldConfig } from '../common/constants/gameConfigs/config8OutOf19.ts';
 
-export const generateWinningCombination = (fields: IFieldConfig[]): number[][] => {
+export const generateWinningCombination = (
+  fields: readonly IFieldConfig[],
+): number[][] => {
   const getRandomNumbers = (length: number, count: number): number[] => {
     const numbers = Array.from({ length }, (_, i) => i + 1);
     const result: number[] = [];
@@ -21,5 +22,7 @@ export const generateWinningCombination = (fields: IFieldConfig[]): number[][] =
     return result;
   };
 
-  return fields.map((field) => getRandomNumbers(field.totalCellCount, field.selectedCellCount));
+  return fields.map((field) =>
+    getRandomNumbers(field.totalCellCount, field.requiredCellCount),
+  );
 };

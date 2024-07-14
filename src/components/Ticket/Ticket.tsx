@@ -1,97 +1,76 @@
-import styled from 'styled-components';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Field } from '../Field/Field.tsx';
-import { ResultButton } from '../ResultButton/ResultButton.tsx';
-import {
-  FIRST_FIELD_CONFIG,
-  SECOND_FIELD_CONFIG,
-} from '../../common/constants/tickets.ts';
 import { MagicWand } from '../MagicWand/MagicWand.tsx';
 import { useNumberSelection } from '../../common/hooks/useNumberSelection.ts';
-import { isWinningCombination } from '../../features/isWinningCombination.ts';
 import { generateWinningCombination } from '../../features/generateWinningCombination.ts';
 import { Result } from '../Result/Result.tsx';
+import * as Styled from './styles.ts';
+import { IGameConfig } from '../../common/constants/gameConfigs/config8OutOf19.ts';
+import { ShowResultButton } from '../ShowResultButton/ShowResultButton.tsx';
 
 interface TicketProps {
   id: number;
+  gameConfig: IGameConfig;
 }
 
-const Wrapper = styled.section`
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
-  width: 296px;
-  min-height: 368px;
-  border-radius: 6px;
-  border: 1px grey solid;
-  padding: 11px;
-  background: #ffffff;
-  box-sizing: border-box;
-`;
+export function Ticket({ id, gameConfig }: TicketProps) {
+  const { fieldsConfig, isGameWon } = gameConfig;
 
-const Heading = styled.h2`
-  text-align: left;
-  font-size: 16px;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 85%;
-  max-height: 22px;
-`;
+  const [fieldSelectionStates, setSelectedFields] =
+    useNumberSelection(fieldsConfig);
 
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  max-width: 100%;
-`;
+  const [isTicketWon, setIsTicketWon] = useState<boolean>(false);
+  const [isGameOver, setIsGameOver] = useState<boolean>(false);
 
-export function Ticket({ id }: TicketProps) {
-  const firstField = useNumberSelection(FIRST_FIELD_CONFIG.selectedCellCount);
-  const secondField = useNumberSelection(SECOND_FIELD_CONFIG.selectedCellCount);
+  const getUserCombination = useCallback(
+    () => fieldSelectionStates.map((fieldState) => fieldState.selectedNumbers),
+    [fieldSelectionStates],
+  );
 
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [shouldShowResult, setShouldShowResult] = useState(false);
+  const handleResultClick = useCallback(() => {
+    const userCombination = getUserCombination();
+    const winningCombination = generateWinningCombination(fieldsConfig);
+    setIsTicketWon(isGameWon(userCombination, winningCombination));
+    setIsGameOver(true);
+  }, [
+    setIsTicketWon,
+    setIsGameOver,
+    fieldsConfig,
+    getUserCombination,
+    isGameWon,
+  ]);
 
-  const handleResultClick = () => {
-    setIsSuccess(
-      isWinningCombination(
-        [firstField.selectedNumbers, secondField.selectedNumbers],
-        generateWinningCombination([FIRST_FIELD_CONFIG, SECOND_FIELD_CONFIG]),
-      ),
-    );
-    setShouldShowResult(true);
-  };
+  const handleMagicWandClick = useCallback(() => {
+    setSelectedFields(generateWinningCombination(fieldsConfig));
+  }, [setSelectedFields, fieldsConfig]);
+
+  const isSelectionCompleted = fieldSelectionStates.every(
+    (fieldState) => fieldState.isSelectionCompleted,
+  );
 
   return (
-    <Wrapper>
-      <Header>
-        <Heading>{`Билет ${id}`}</Heading>
-        <MagicWand />
-      </Header>
-      {shouldShowResult ? (
-        <Result isSuccess={isSuccess} />
+    <Styled.TicketWrapper>
+      <Styled.Header>
+        <Styled.Heading>{`Билет ${id}`}</Styled.Heading>
+        {!isGameOver && <MagicWand onClick={handleMagicWandClick} />}
+      </Styled.Header>
+      {isGameOver ? (
+        <Result isTicketWon={isTicketWon} />
       ) : (
         <>
-          <Field
-            config={FIRST_FIELD_CONFIG}
-            number={1}
-            selectionInfo={firstField}
-          />
-          <Field
-            config={SECOND_FIELD_CONFIG}
-            number={2}
-            selectionInfo={secondField}
-          />
-          <ResultButton
-            disabled={
-              !firstField.isSelectionCompleted ||
-              !secondField.isSelectionCompleted
-            }
+          {fieldsConfig.map((fieldConfig, index) => (
+            <Field
+              config={fieldConfig}
+              selectionState={fieldSelectionStates[index]}
+              key={fieldConfig.id}
+            />
+          ))}
+          <ShowResultButton
+            disabled={!isSelectionCompleted}
             onClick={handleResultClick}
           />
         </>
       )}
-    </Wrapper>
+    </Styled.TicketWrapper>
   );
 }

@@ -1,37 +1,55 @@
 import { useState } from 'react';
+import { IFieldConfig } from '../constants/gameConfigs/config8OutOf19.ts';
 
-export interface UseNumberSelection {
+export interface FieldState {
   selectedNumbers: number[];
-  toggleNumber: (number: number) => void;
+  toggleNumber: (num: number) => void;
   isSelectionCompleted: boolean;
 }
 
-/**
- * Кастомный React-хук, который следит за выбором чисел в поле
- *
- * @param {number} requiredNumbersCount - Необходимое количество чисел для выбора
- * @returns {UseNumberSelection} - Объект, содержащий выбранные на данный момент числа,
- * функцию toggleNumber и индикатор «заполненности» поля isSelectionCompleted
+export type UseNumberSelection = [FieldState[], (selected: number[][]) => void];
+
+/** Кастомный React-хук для управления выбором чисел в полях билета
+ * @params fieldConfigs - массив с конфигурацией полей
+ * @returns {UseNumberSelection} - кортеж, где
+ * первое значение — объекты состояния выбора каждого из полей,
+ * второе — функция для установки в поле значений
  */
 
-export const useNumberSelection = (
-  requiredNumbersCount: number,
-): UseNumberSelection => {
-  const [selectedNumbers, setSelectedNumbers] = useState<number[]>([]);
+export function useNumberSelection(
+  fieldConfigs: readonly IFieldConfig[],
+): UseNumberSelection {
+  const [selectedFields, setSelectedFields] = useState<number[][]>(
+    fieldConfigs.map(() => []),
+  );
 
-  const toggleNumber = (number: number) => {
-    setSelectedNumbers((previous) => {
-      if (previous.includes(number)) {
-        return previous.filter((n) => n !== number);
-      }
-      if (previous.length < requiredNumbersCount) {
-        return [...previous, number];
-      }
-      return previous;
-    });
-  };
+  const fieldSelectionStates: FieldState[] = fieldConfigs.map(
+    (config, index) => {
+      const toggleNumber = (num: number) => {
+        setSelectedFields((prev) => {
+          const newSelected = [...prev];
+          const fieldSelected = newSelected[index];
 
-  const isSelectionCompleted = selectedNumbers.length === requiredNumbersCount;
+          if (fieldSelected.includes(num)) {
+            newSelected[index] = fieldSelected.filter((n) => n !== num);
+          } else if (fieldSelected.length < config.requiredCellCount) {
+            newSelected[index] = [...fieldSelected, num];
+          }
 
-  return { selectedNumbers, toggleNumber, isSelectionCompleted };
-};
+          return newSelected;
+        });
+      };
+
+      const isSelectionCompleted =
+        selectedFields[index].length === config.requiredCellCount;
+
+      return {
+        selectedNumbers: selectedFields[index],
+        toggleNumber,
+        isSelectionCompleted,
+      };
+    },
+  );
+
+  return [fieldSelectionStates, setSelectedFields];
+}

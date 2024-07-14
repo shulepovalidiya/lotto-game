@@ -1,20 +1,16 @@
-import styled from 'styled-components';
+import * as Styled from './styles.ts';
 
 interface ResultProps {
-  isSuccess: boolean;
+  isTicketWon: boolean;
 }
 
-const Span = styled.span`
-  margin: 0;
-`;
-
 export function Result(props: ResultProps) {
-  const { isSuccess } = props;
+  const { isTicketWon } = props;
   return (
-    <Span>
-      {isSuccess
+    <Styled.Span>
+      {isTicketWon
         ? 'Ого, вы выиграли! Поздравляем!'
         : 'В этот раз выиграть не получилось :('}
-    </Span>
+    </Styled.Span>
   );
 }
