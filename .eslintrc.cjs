@@ -25,6 +25,16 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-plusplus': ['error', {allowForLoopAfterthoughts: true}],
     'no-unused-vars': 'off',
+    'operator-linebreak': [
+      'error',
+      'after',
+      {
+        'overrides': {
+          ':': 'before',
+          '?': 'before'
+        }
+      }
+    ],
     '@typescript-eslint/no-unused-vars': 'error'
   },
 }
