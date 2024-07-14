@@ -4,16 +4,16 @@ import * as Styled from '../../app/styles.ts';
 import { Ticket } from '../Ticket/Ticket.tsx';
 
 interface GameProps {
-  gameConfig: IGameConfig;
+  config: IGameConfig;
 }
 
-export function Game({ gameConfig }: GameProps) {
-  const ticketsIdList = generateNaturalSeries(gameConfig.initialTicketsCount);
+export function Game({ config }: GameProps) {
+  const ticketsIdList = generateNaturalSeries(config.initialTicketsCount);
 
   return (
     <Styled.TicketsWrapper>
       {ticketsIdList.map((id) => (
-        <Ticket id={id} key={id} gameConfig={gameConfig} />
+        <Ticket id={id} key={id} gameConfig={config} />
       ))}
     </Styled.TicketsWrapper>
   );
