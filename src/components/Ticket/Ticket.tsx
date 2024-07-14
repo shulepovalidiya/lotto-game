@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 import { Field } from '../Field/Field.tsx';
 import { ResultButton } from '../ResultButton/ResultButton.tsx';
 import {
@@ -9,6 +10,7 @@ import { MagicWand } from '../MagicWand/MagicWand.tsx';
 import { useNumberSelection } from '../../common/hooks/useNumberSelection.ts';
 import { isWinningCombination } from '../../features/isWinningCombination.ts';
 import { generateWinningCombination } from '../../features/generateWinningCombination.ts';
+import { Result } from '../Result/Result.tsx';
 
 interface TicketProps {
   id: number;
@@ -48,11 +50,17 @@ export function Ticket({ id }: TicketProps) {
   const firstField = useNumberSelection(FIRST_FIELD_CONFIG.selectedCellCount);
   const secondField = useNumberSelection(SECOND_FIELD_CONFIG.selectedCellCount);
 
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [shouldShowResult, setShouldShowResult] = useState(false);
+
   const handleResultClick = () => {
-    isWinningCombination(
-      [firstField.selectedNumbers, secondField.selectedNumbers],
-      generateWinningCombination([FIRST_FIELD_CONFIG, SECOND_FIELD_CONFIG]),
+    setIsSuccess(
+      isWinningCombination(
+        [firstField.selectedNumbers, secondField.selectedNumbers],
+        generateWinningCombination([FIRST_FIELD_CONFIG, SECOND_FIELD_CONFIG]),
+      ),
     );
+    setShouldShowResult(true);
   };
 
   return (
@@ -61,22 +69,29 @@ export function Ticket({ id }: TicketProps) {
         <Heading>{`Билет ${id}`}</Heading>
         <MagicWand />
       </Header>
-      <Field
-        config={FIRST_FIELD_CONFIG}
-        number={1}
-        selectionInfo={firstField}
-      />
-      <Field
-        config={SECOND_FIELD_CONFIG}
-        number={2}
-        selectionInfo={secondField}
-      />
-      <ResultButton
-        disabled={
-          !firstField.isSelectionCompleted || !secondField.isSelectionCompleted
-        }
-        onClick={handleResultClick}
-      />
+      {shouldShowResult ? (
+        <Result isSuccess={isSuccess} />
+      ) : (
+        <>
+          <Field
+            config={FIRST_FIELD_CONFIG}
+            number={1}
+            selectionInfo={firstField}
+          />
+          <Field
+            config={SECOND_FIELD_CONFIG}
+            number={2}
+            selectionInfo={secondField}
+          />
+          <ResultButton
+            disabled={
+              !firstField.isSelectionCompleted ||
+              !secondField.isSelectionCompleted
+            }
+            onClick={handleResultClick}
+          />
+        </>
+      )}
     </Wrapper>
   );
 }

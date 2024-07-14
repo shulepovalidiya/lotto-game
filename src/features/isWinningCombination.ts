@@ -10,8 +10,9 @@ export const isWinningCombination = (
   userCombination: number[][],
   winningCombination: number[][],
 ): boolean => {
-  const intersection = (array1: number[], array2: number[]) =>
-    array1.filter((num) => array2.includes(num));
+  function intersection(array1: number[], array2: number[]) {
+    return array1.filter((num) => array2.includes(num));
+  }
 
   const matchesField1 = intersection(
     userCombination[0],
