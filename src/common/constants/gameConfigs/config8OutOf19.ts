@@ -10,12 +10,14 @@ export type TIsGameWon = (
 ) => boolean;
 
 export interface IGameConfig {
-  ticketsCount: number;
+  initialTicketsCount: number;
   fieldsConfig: readonly IFieldConfig[];
   isGameWon: TIsGameWon;
 }
 
-/** Конфигурация полей в билете */
+/** Конфигурация полей в билете. Определяется условиями задачи
+ * @see {https://github.com/shulepovalidiya/lotto-game/blob/main/docs/games/8_out_of_19.md}
+ */
 const FIELDS_CONFIG: readonly IFieldConfig[] = [
   {
     id: 1,
@@ -30,13 +32,14 @@ const FIELDS_CONFIG: readonly IFieldConfig[] = [
 ];
 
 /**
- * Функция проверяет, является ли комбинация пользователя выигрышной
+ * Функция проверяет, является ли комбинация пользователя выигрышной.
+ * Выигрыш определяется условиями задачи.
  *
  * @param userCombination - выбранная пользователем комбинация
  * @param winningCombination - выигрышная комбинация
  * @returns {boolean} - выиграл ли пользователь
+ * @see {https://github.com/shulepovalidiya/lotto-game/blob/main/docs/games/8_out_of_19.md}
  */
-
 export const isGameWon = (
   userCombination: number[][],
   winningCombination: number[][],
@@ -55,9 +58,11 @@ export const isGameWon = (
   return matchesField1 >= 4 || (matchesField1 >= 3 && matchesField2 >= 1);
 };
 
-/** Конфигурация игры. Описываем, сколько нужно отобразить билетов, с какими полями */
+/** Конфигурация игры. Описана по условиям задачи.
+ * @see {https://github.com/shulepovalidiya/lotto-game/blob/main/docs/games/8_out_of_19.md}
+ */
 export const CONFIG_8_OUT_OF_19: IGameConfig = {
-  ticketsCount: 1,
+  initialTicketsCount: 1,
   fieldsConfig: FIELDS_CONFIG,
   isGameWon,
 } as const;

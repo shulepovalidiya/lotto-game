@@ -8,7 +8,7 @@ interface GameProps {
 }
 
 export function Game({ gameConfig }: GameProps) {
-  const ticketsIdList = generateNaturalSeries(gameConfig.ticketsCount);
+  const ticketsIdList = generateNaturalSeries(gameConfig.initialTicketsCount);
 
   return (
     <Styled.TicketsWrapper>
