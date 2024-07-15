@@ -2,11 +2,11 @@ import { useCallback, useState } from 'react';
 import { Field } from '../Field/Field.tsx';
 import { MagicWand } from '../MagicWand/MagicWand.tsx';
 import { useNumberSelection } from '../../common/hooks/useNumberSelection.ts';
-import { generateWinningCombination } from '../../features/generateWinningCombination.ts';
 import { Result } from '../Result/Result.tsx';
 import * as Styled from './styles.ts';
 import { IGameConfig } from '../../common/constants/gameConfigs/config8OutOf19.ts';
 import { ShowResultButton } from '../ShowResultButton/ShowResultButton.tsx';
+import { generateRandomCombination } from '../../common/utils/generateRandomCombination.ts';
 
 interface TicketProps {
   id: number;
@@ -29,7 +29,7 @@ export function Ticket({ id, gameConfig }: TicketProps) {
 
   const handleResultClick = useCallback(() => {
     const userCombination = getUserCombination();
-    const winningCombination = generateWinningCombination(fieldsConfig);
+    const winningCombination = generateRandomCombination(fieldsConfig);
     setIsTicketWon(isGameWon(userCombination, winningCombination));
     setIsGameOver(true);
   }, [
@@ -41,7 +41,7 @@ export function Ticket({ id, gameConfig }: TicketProps) {
   ]);
 
   const handleMagicWandClick = useCallback(() => {
-    setSelectedFields(generateWinningCombination(fieldsConfig));
+    setSelectedFields(generateRandomCombination(fieldsConfig));
   }, [setSelectedFields, fieldsConfig]);
 
   const isSelectionCompleted = fieldSelectionStates.every(

@@ -1,3 +1,5 @@
+import { getCombinationMatches } from '../../utils/getCombinationMatches.ts';
+
 export interface IFieldConfig {
   id: number;
   totalCellCount: number;
@@ -40,22 +42,20 @@ const FIELDS_CONFIG: readonly IFieldConfig[] = [
  * @returns {boolean} - выиграл ли пользователь
  * @see {https://github.com/shulepovalidiya/lotto-game/blob/main/docs/games/8_out_of_19.md}
  */
-export const isGameWon = (
+
+const isGameWon = (
   userCombination: number[][],
   winningCombination: number[][],
 ): boolean => {
-  function intersection(array1: number[], array2: number[]) {
-    return array1.filter((num) => array2.includes(num));
-  }
-  const matchesField1 = intersection(
-    userCombination[0],
-    winningCombination[0],
-  ).length;
-  const matchesField2 = intersection(
-    userCombination[1],
-    winningCombination[1],
-  ).length;
-  return matchesField1 >= 4 || (matchesField1 >= 3 && matchesField2 >= 1);
+  const matches = getCombinationMatches(userCombination, winningCombination);
+
+  const matchesInFirstField = matches[0];
+  const matchesInSecondField = matches[1];
+
+  return (
+    matchesInFirstField >= 4 ||
+    (matchesInFirstField >= 3 && matchesInSecondField >= 1)
+  );
 };
 
 /** Конфигурация игры. Описана по условиям задачи.
