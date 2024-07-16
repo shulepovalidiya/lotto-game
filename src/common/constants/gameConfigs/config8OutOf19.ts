@@ -61,7 +61,7 @@ const isGameWon = (
  * @see {https://github.com/shulepovalidiya/lotto-game/blob/main/docs/games/8_out_of_19.md}
  */
 export const CONFIG_8_OUT_OF_19: IGameConfig = {
-  initialTicketsCount: 1,
+  initialTicketsCount: 5,
   fieldsConfig: FIELDS_CONFIG,
   isGameWon,
 } as const;

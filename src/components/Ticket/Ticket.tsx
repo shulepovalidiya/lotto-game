@@ -36,14 +36,17 @@ export function Ticket({ id, gameConfig }: TicketProps) {
     const isWon = isGameWon(userCombination, winningCombination);
     setIsTicketWon(isWon);
     setIsGameOver(true);
-    submitTicket({
-      selectedNumber: {
-        firstField: userCombination[0],
-        secondField: userCombination[1],
+    submitTicket(
+      {
+        selectedNumber: {
+          firstField: userCombination[0],
+          secondField: userCombination[1],
+        },
+        isTicketWon: isWon,
       },
-      isTicketWon: isWon,
-    });
-  }, [memoizedGetUserCombination, fieldsConfig, isGameWon]);
+      id,
+    );
+  }, [memoizedGetUserCombination, fieldsConfig, isGameWon, id]);
 
   const handleMagicWandClick = useCallback(() => {
     setSelectedFields(generateRandomCombination(fieldsConfig));

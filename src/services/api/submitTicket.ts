@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 axiosRetry(axios, {
   retries: 2,
   retryDelay: () => 2000,
+  // Повторяем запрос по заданному условию — если в ответ придет код не 200 OK, а любой другой
   retryCondition: () => true,
 });
 
@@ -13,11 +14,11 @@ export interface ITicket {
   isTicketWon: boolean;
 }
 
-export const submitTicket = async (ticket: ITicket) => {
+export const submitTicket = async (ticket: ITicket, ticketId: number) => {
   try {
     await axios.post('https://httpstat.us/random/100-500', ticket);
-    toast.success('Билет успешно отправлен!');
+    toast.success(`Билет ${ticketId} успешно отправлен!`);
   } catch (error) {
-    toast.error('Не получилось отправить билет :(');
+    toast.error(`Не получилось отправить билет ${ticketId} :(`);
   }
 };
