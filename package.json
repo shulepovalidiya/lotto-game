@@ -7,6 +7,7 @@
     "dev": "vite --port 3000 --open",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
+    "test": "jest",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prettier": "prettier ./src --write",
     "ts:check": "tsc",
@@ -29,6 +30,8 @@
     "styled-components": "^6.1.11"
   },
   "devDependencies": {
+    "@testing-library/react": "^16.0.0",
+    "@types/jest": "^29.5.12",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
@@ -43,8 +46,10 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "husky": "^9.0.11",
+    "jest": "^29.7.0",
     "lint-staged": "^15.2.7",
     "prettier": "3.3.2",
+    "ts-jest": "^29.2.2",
     "typescript": "^5.2.2",
     "vite": "^5.3.1"
   }

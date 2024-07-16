@@ -1,6 +1,6 @@
 import { generateNaturalSeries } from '../../common/utils/generateNaturalSeries.ts';
 import { Cell } from '../Cell/Cell.tsx';
-import { pluralize } from '../../common/utils/pluralize.ts';
+import { pluralize } from '../../common/utils/pluralize/pluralize.ts';
 import { IFieldConfig } from '../../common/constants/gameConfigs/config8OutOf19.ts';
 import { FieldState } from '../../common/hooks/useNumberSelection.ts';
 import * as Styled from './styles.ts';
