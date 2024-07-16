@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 import { Field } from '../Field/Field.tsx';
 import { MagicWand } from '../MagicWand/MagicWand.tsx';
 import { useNumberSelection } from '../../common/hooks/useNumberSelection.ts';
@@ -7,6 +8,7 @@ import * as Styled from './styles.ts';
 import { IGameConfig } from '../../common/constants/gameConfigs/config8OutOf19.ts';
 import { ShowResultButton } from '../ShowResultButton/ShowResultButton.tsx';
 import { generateRandomCombination } from '../../common/utils/generateRandomCombination.ts';
+import { submitTicket } from '../../services/api/submitTicket.ts';
 
 interface TicketProps {
   id: number;
@@ -22,23 +24,26 @@ export function Ticket({ id, gameConfig }: TicketProps) {
   const [isTicketWon, setIsTicketWon] = useState<boolean>(false);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
 
-  const getUserCombination = useCallback(
-    () => fieldSelectionStates.map((fieldState) => fieldState.selectedNumbers),
-    [fieldSelectionStates],
-  );
+  const getUserCombination = () => fieldSelectionStates.map((fieldState) => fieldState.selectedNumbers);
+
+  const memoizedGetUserCombination = useCallback(getUserCombination, [
+    fieldSelectionStates,
+  ]);
 
   const handleResultClick = useCallback(() => {
-    const userCombination = getUserCombination();
+    const userCombination = memoizedGetUserCombination();
     const winningCombination = generateRandomCombination(fieldsConfig);
-    setIsTicketWon(isGameWon(userCombination, winningCombination));
+    const isWon = isGameWon(userCombination, winningCombination);
+    setIsTicketWon(isWon);
     setIsGameOver(true);
-  }, [
-    setIsTicketWon,
-    setIsGameOver,
-    fieldsConfig,
-    getUserCombination,
-    isGameWon,
-  ]);
+    submitTicket({
+      selectedNumber: {
+        firstField: userCombination[0],
+        secondField: userCombination[1],
+      },
+      isTicketWon: isWon,
+    });
+  }, [memoizedGetUserCombination, fieldsConfig, isGameWon]);
 
   const handleMagicWandClick = useCallback(() => {
     setSelectedFields(generateRandomCombination(fieldsConfig));
@@ -71,6 +76,7 @@ export function Ticket({ id, gameConfig }: TicketProps) {
           />
         </>
       )}
+      <Toaster />
     </Styled.TicketWrapper>
   );
 }
