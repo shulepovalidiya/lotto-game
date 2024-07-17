@@ -4,10 +4,7 @@ export interface IFieldConfig {
   requiredCellCount: number;
 }
 
-export type TIsGameWon = (
-  userCombination: number[][],
-  winningCombination: number[][],
-) => boolean;
+export type TIsGameWon = (userCombination: number[][], winningCombination: number[][]) => boolean;
 
 export interface IGameConfig {
   initialTicketsCount: number;

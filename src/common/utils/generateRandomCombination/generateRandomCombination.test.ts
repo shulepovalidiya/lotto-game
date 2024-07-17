@@ -15,9 +15,7 @@ describe('generateRandomCombination', () => {
   it('should generate the correct number of numbers in each field', () => {
     const combination = generateRandomCombination(fieldsConfig);
     combination.forEach((fieldCombination, index) => {
-      expect(fieldCombination).toHaveLength(
-        fieldsConfig[index].requiredCellCount,
-      );
+      expect(fieldCombination).toHaveLength(fieldsConfig[index].requiredCellCount);
     });
   });
 

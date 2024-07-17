@@ -11,16 +11,10 @@ import { getArrayIntersection } from '../getArrayIntersection';
  * второе значение - количество совпадений во втором поле,
  * и так далее.
  */
-export function getCombinationMatches(
-  userCombination: number[][],
-  winningCombination: number[][],
-): number[] {
+export function getCombinationMatches(userCombination: number[][], winningCombination: number[][]): number[] {
   const matches: number[] = [];
   for (let i = 0; i < userCombination.length; i++) {
-    const currentFieldMatchesCount = getArrayIntersection(
-      userCombination[i],
-      winningCombination[i],
-    ).length;
+    const currentFieldMatchesCount = getArrayIntersection(userCombination[i], winningCombination[i]).length;
     matches.push(currentFieldMatchesCount);
   }
   return matches;

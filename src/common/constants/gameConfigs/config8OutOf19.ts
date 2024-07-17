@@ -26,19 +26,13 @@ const FIELDS_CONFIG: readonly IFieldConfig[] = [
  * @returns {boolean} - выиграл ли пользователь
  * @see {https://github.com/shulepovalidiya/lotto-game/blob/main/docs/games/8_out_of_19.md}
  */
-const isGameWon = (
-  userCombination: number[][],
-  winningCombination: number[][],
-): boolean => {
+const isGameWon = (userCombination: number[][], winningCombination: number[][]): boolean => {
   const matches = getCombinationMatches(userCombination, winningCombination);
 
   const matchesInFirstField = matches[0];
   const matchesInSecondField = matches[1];
 
-  return (
-    matchesInFirstField >= 4 ||
-    (matchesInFirstField >= 3 && matchesInSecondField >= 1)
-  );
+  return matchesInFirstField >= 4 || (matchesInFirstField >= 3 && matchesInSecondField >= 1);
 };
 
 /** Конфигурация игры. Описана по условиям задачи.

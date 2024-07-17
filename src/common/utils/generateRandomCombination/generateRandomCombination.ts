@@ -6,9 +6,7 @@ import { IFieldConfig } from '../../constants/gameConfigs/types';
  * @returns {number[][]} - комбинация (количество вложенных массивов зависит от
  * количества полей в конфиге)
  */
-export const generateRandomCombination = (
-  fieldsConfig: readonly IFieldConfig[],
-): number[][] => {
+export const generateRandomCombination = (fieldsConfig: readonly IFieldConfig[]): number[][] => {
   const getRandomNumbers = (length: number, count: number): number[] => {
     const numbers = Array.from({ length }, (_, i) => i + 1);
     const result: number[] = [];
