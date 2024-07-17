@@ -25,6 +25,7 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'max-len': ['error', { code: 120, "ignoreTemplateLiterals": true, "ignoreStrings": true }],
     'react/jsx-filename-extension': [2, { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
