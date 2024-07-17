@@ -1,14 +1,14 @@
 import { useCallback, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
-import { Field } from '../Field/Field.tsx';
-import { MagicWand } from '../MagicWand/MagicWand.tsx';
-import { useNumberSelection } from '../../common/hooks/useNumberSelection.ts';
-import { Result } from '../Result/Result.tsx';
-import * as Styled from './styles.ts';
-import { IGameConfig } from '../../common/constants/gameConfigs/config8OutOf19.ts';
-import { ShowResultButton } from '../ShowResultButton/ShowResultButton.tsx';
-import { generateRandomCombination } from '../../common/utils/generateRandomCombination.ts';
-import { submitTicket } from '../../services/api/submitTicket.ts';
+import { Field } from '../Field';
+import { MagicWand } from '../MagicWand';
+import { useNumberSelection } from '../../common/hooks/useNumberSelection';
+import { Result } from '../Result';
+import * as Styled from './styles';
+import { ShowResultButton } from '../ShowResultButton';
+import { generateRandomCombination } from '../../common/utils/generateRandomCombination';
+import { submitTicket } from '../../services/api/submitTicket';
+import { IGameConfig } from '../../common/constants/gameConfigs/types';
 
 interface TicketProps {
   id: number;

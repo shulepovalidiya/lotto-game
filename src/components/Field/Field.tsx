@@ -1,9 +1,9 @@
-import { generateNaturalSeries } from '../../common/utils/generateNaturalSeries.ts';
-import { Cell } from '../Cell/Cell.tsx';
-import { pluralize } from '../../common/utils/pluralize/pluralize.ts';
-import { IFieldConfig } from '../../common/constants/gameConfigs/config8OutOf19.ts';
-import { FieldState } from '../../common/hooks/useNumberSelection.ts';
-import * as Styled from './styles.ts';
+import { generateNaturalSeries } from '../../common/utils/generateNaturalSeries';
+import { Cell } from '../Cell';
+import { pluralize } from '../../common/utils/pluralize';
+import { FieldState } from '../../common/hooks/useNumberSelection';
+import * as Styled from './styles';
+import { IFieldConfig } from '../../common/constants/gameConfigs/types';
 
 interface FieldProps {
   config: IFieldConfig;

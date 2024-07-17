@@ -10,4 +10,15 @@ describe('test pluralize', () => {
       }),
     ).toEqual('билетов');
   });
+
+  test('other', () => {
+    expect(
+      pluralize(0.5, {
+        one: 'билет',
+        few: 'билета',
+        many: 'билетов',
+        other: 'билетик',
+      }),
+    ).toEqual('билетик');
+  });
 });

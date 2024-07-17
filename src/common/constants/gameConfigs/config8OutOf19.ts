@@ -1,21 +1,5 @@
-import { getCombinationMatches } from '../../utils/getCombinationMatches.ts';
-
-export interface IFieldConfig {
-  id: number;
-  totalCellCount: number;
-  requiredCellCount: number;
-}
-
-export type TIsGameWon = (
-  userCombination: number[][],
-  winningCombination: number[][],
-) => boolean;
-
-export interface IGameConfig {
-  initialTicketsCount: number;
-  fieldsConfig: readonly IFieldConfig[];
-  isGameWon: TIsGameWon;
-}
+import { getCombinationMatches } from '../../utils/getCombinationMatches';
+import { IFieldConfig, IGameConfig } from './types';
 
 /** Конфигурация полей в билете. Определяется условиями задачи
  * @see {https://github.com/shulepovalidiya/lotto-game/blob/main/docs/games/8_out_of_19.md}

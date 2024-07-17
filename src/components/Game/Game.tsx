@@ -1,7 +1,7 @@
-import { generateNaturalSeries } from '../../common/utils/generateNaturalSeries.ts';
-import { IGameConfig } from '../../common/constants/gameConfigs/config8OutOf19.ts';
-import * as Styled from '../../app/styles.ts';
-import { Ticket } from '../Ticket/Ticket.tsx';
+import { generateNaturalSeries } from '../../common/utils/generateNaturalSeries';
+import * as Styled from '../../app/styles';
+import { Ticket } from '../Ticket';
+import { IGameConfig } from '../../common/constants/gameConfigs/types';
 
 interface GameProps {
   config: IGameConfig;

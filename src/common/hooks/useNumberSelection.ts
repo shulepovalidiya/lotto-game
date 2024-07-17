@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IFieldConfig } from '../constants/gameConfigs/config8OutOf19.ts';
+import { IFieldConfig } from '../constants/gameConfigs/types';
 
 export interface FieldState {
   selectedNumbers: number[];
@@ -15,7 +15,6 @@ export type UseNumberSelection = [FieldState[], (selected: number[][]) => void];
  * первое значение — объекты состояния выбора каждого из полей,
  * второе — функция для установки в поле значений
  */
-
 export function useNumberSelection(
   fieldConfigs: readonly IFieldConfig[],
 ): UseNumberSelection {

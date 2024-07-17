@@ -1,4 +1,4 @@
-import * as Styled from './styles.ts';
+import * as Styled from './styles';
 
 interface CellProps {
   number: number;

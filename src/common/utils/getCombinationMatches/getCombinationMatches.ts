@@ -1,4 +1,4 @@
-import { getArrayIntersection } from './getArrayIntersection.ts';
+import { getArrayIntersection } from '../getArrayIntersection';
 
 /** Функция, которая находит и возвращает
  * количество совпадений между пользовательской и выигрышной комбинациями

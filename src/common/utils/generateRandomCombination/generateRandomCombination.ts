@@ -1,4 +1,4 @@
-import { IFieldConfig } from '../constants/gameConfigs/config8OutOf19.ts';
+import { IFieldConfig } from '../../constants/gameConfigs/types';
 
 /** Функция генерирует случайную игровую комбинацию для заданной конфигурации полей
  *

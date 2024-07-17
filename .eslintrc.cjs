@@ -9,10 +9,16 @@ module.exports = {
     'plugin:react/jsx-runtime',
     'eslint-config-prettier',
     'airbnb',
+    'airbnb-typescript',
     'airbnb/hooks'
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
+  parserOptions: {
+    sourceType: 'module',
+    tsconfigRootDir: __dirname,
+    project: ['./tsconfig.app.json', './tsconfig.json'],
+  },
   plugins: ['react-refresh'],
   rules: {
     'react-refresh/only-export-components': [
