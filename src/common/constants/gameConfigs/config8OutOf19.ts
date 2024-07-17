@@ -1,7 +1,8 @@
 import { getCombinationMatches } from '../../utils/getCombinationMatches';
 import { FieldConfig, GameConfig } from './types';
 
-/** Конфигурация полей в билете. Определяется условиями задачи
+/**
+ * Конфигурация полей в билете. Определяется условиями задачи
  * @see {https://github.com/shulepovalidiya/lotto-game/blob/main/docs/games/8_out_of_19.md}
  */
 const FIELDS_CONFIG: readonly FieldConfig[] = [
@@ -21,9 +22,11 @@ const FIELDS_CONFIG: readonly FieldConfig[] = [
  * Функция проверяет, является ли комбинация пользователя выигрышной.
  * Выигрыш определяется условиями задачи.
  *
- * @param userCombination - выбранная пользователем комбинация
- * @param winningCombination - выигрышная комбинация
+ * @param userCombination {number[][]} - выбранная пользователем комбинация
+ * @param winningCombination {number[][]} - выигрышная комбинация
+ *
  * @returns {boolean} - выиграл ли пользователь
+ *
  * @see {https://github.com/shulepovalidiya/lotto-game/blob/main/docs/games/8_out_of_19.md}
  */
 const isGameWon = (userCombination: number[][], winningCombination: number[][]): boolean => {
@@ -35,7 +38,8 @@ const isGameWon = (userCombination: number[][], winningCombination: number[][]):
   return matchesInFirstField >= 4 || (matchesInFirstField >= 3 && matchesInSecondField >= 1);
 };
 
-/** Конфигурация игры. Описана по условиям задачи.
+/**
+ * Конфигурация игры. Описана по условиям задачи.
  * @see {https://github.com/shulepovalidiya/lotto-game/blob/main/docs/games/8_out_of_19.md}
  */
 export const CONFIG_8_OUT_OF_19: GameConfig = {

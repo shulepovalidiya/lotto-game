@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import { FieldConfig } from '../constants/gameConfigs/types';
 
+/**
+ * Интерфейс описывает состояние пользовательского выбора в игровом поле:
+ * текущее количество выбранных чисел,
+ * функцию, которая позволяет снимать и устанавливать выделение на числе,
+ * индикатор, позволяющий определить, выбрано ли необходимое количество чисел
+ */
 export interface FieldState {
   selectedNumbers: number[];
   toggleNumber: (num: number) => void;
