@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const CellWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, 39px);
-  grid-template-rows: repeat(auto-fill, 39px);
+  grid-auto-rows: 39px;
   place-items: center;
   width: 274px;
   height: 100%;
