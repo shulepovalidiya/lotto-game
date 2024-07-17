@@ -19,7 +19,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: ['./tsconfig.app.json', './tsconfig.json'],
   },
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', 'prettier'],
   rules: {
     'react-refresh/only-export-components': [
       'warn',
@@ -41,6 +41,6 @@ module.exports = {
         }
       }
     ],
-    '@typescript-eslint/no-unused-vars': 'error'
+    '@typescript-eslint/no-unused-vars': 'error',
   },
 }
