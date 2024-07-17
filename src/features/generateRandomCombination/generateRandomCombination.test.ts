@@ -1,5 +1,5 @@
-import { generateRandomCombination } from './generateRandomCombination';
-import { FieldConfig } from '../../constants/gameConfigs/types';
+import { generateRandomCombination } from './generateRandomCombination.ts';
+import { FieldConfig } from '../../common/constants/gameConfigs/types.ts';
 
 describe('generateRandomCombination', () => {
   const fieldsConfig: readonly FieldConfig[] = [

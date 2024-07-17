@@ -1,4 +1,4 @@
-import { FieldConfig } from '../../constants/gameConfigs/types';
+import { FieldConfig } from '../../common/constants/gameConfigs/types';
 
 /** Функция генерирует случайную игровую комбинацию для заданной конфигурации полей
  *

@@ -6,7 +6,7 @@ import { useNumberSelection } from '../../common/hooks/useNumberSelection';
 import { Result } from '../Result';
 import * as Styled from './styles';
 import { ShowResultButton } from '../ShowResultButton';
-import { generateRandomCombination } from '../../common/utils/generateRandomCombination';
+import { generateRandomCombination } from '../../features/generateRandomCombination';
 import { submitTicket } from '../../services/api/submitTicket';
 import { GameConfig } from '../../common/constants/gameConfigs/types';
 
