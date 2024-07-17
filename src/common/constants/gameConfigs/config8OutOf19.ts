@@ -1,10 +1,10 @@
 import { getCombinationMatches } from '../../utils/getCombinationMatches';
-import { IFieldConfig, IGameConfig } from './types';
+import { FieldConfig, GameConfig } from './types';
 
 /** Конфигурация полей в билете. Определяется условиями задачи
  * @see {https://github.com/shulepovalidiya/lotto-game/blob/main/docs/games/8_out_of_19.md}
  */
-const FIELDS_CONFIG: readonly IFieldConfig[] = [
+const FIELDS_CONFIG: readonly FieldConfig[] = [
   {
     id: 1,
     totalCellCount: 19,
@@ -38,7 +38,7 @@ const isGameWon = (userCombination: number[][], winningCombination: number[][]):
 /** Конфигурация игры. Описана по условиям задачи.
  * @see {https://github.com/shulepovalidiya/lotto-game/blob/main/docs/games/8_out_of_19.md}
  */
-export const CONFIG_8_OUT_OF_19: IGameConfig = {
+export const CONFIG_8_OUT_OF_19: GameConfig = {
   initialTicketsCount: 5,
   fieldsConfig: FIELDS_CONFIG,
   isGameWon,

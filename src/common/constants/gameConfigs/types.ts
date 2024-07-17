@@ -1,13 +1,13 @@
-export interface IFieldConfig {
+export interface FieldConfig {
   id: number;
   totalCellCount: number;
   requiredCellCount: number;
 }
 
-export type TIsGameWon = (userCombination: number[][], winningCombination: number[][]) => boolean;
+export type IsGameWon = (userCombination: number[][], winningCombination: number[][]) => boolean;
 
-export interface IGameConfig {
+export interface GameConfig {
   initialTicketsCount: number;
-  fieldsConfig: readonly IFieldConfig[];
-  isGameWon: TIsGameWon;
+  fieldsConfig: readonly FieldConfig[];
+  isGameWon: IsGameWon;
 }

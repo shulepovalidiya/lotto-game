@@ -1,8 +1,8 @@
 import { generateRandomCombination } from './generateRandomCombination';
-import { IFieldConfig } from '../../constants/gameConfigs/types';
+import { FieldConfig } from '../../constants/gameConfigs/types';
 
 describe('generateRandomCombination', () => {
-  const fieldsConfig: readonly IFieldConfig[] = [
+  const fieldsConfig: readonly FieldConfig[] = [
     { id: 1, totalCellCount: 19, requiredCellCount: 8 },
     { id: 2, totalCellCount: 2, requiredCellCount: 1 },
   ];

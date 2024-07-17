@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IFieldConfig } from '../constants/gameConfigs/types';
+import { FieldConfig } from '../constants/gameConfigs/types';
 
 export interface FieldState {
   selectedNumbers: number[];
@@ -15,12 +15,12 @@ export type UseNumberSelection = [FieldState[], (selected: number[][]) => void];
  * первое значение — объекты состояния выбора каждого из полей,
  * второе — функция для установки в поле значений
  */
-export function useNumberSelection(fieldConfigs: readonly IFieldConfig[]): UseNumberSelection {
-  const [selectedFields, setSelectedFields] = useState<number[][]>(fieldConfigs.map(() => []));
+export function useNumberSelection(fieldConfigs: readonly FieldConfig[]): UseNumberSelection {
+  const [selectedFields, setSelectionState] = useState<number[][]>(fieldConfigs.map(() => []));
 
   const fieldSelectionStates: FieldState[] = fieldConfigs.map((config, index) => {
     const toggleNumber = (num: number) => {
-      setSelectedFields((prev) => {
+      setSelectionState((prev) => {
         const newSelected = [...prev];
         const fieldSelected = newSelected[index];
 
@@ -43,5 +43,5 @@ export function useNumberSelection(fieldConfigs: readonly IFieldConfig[]): UseNu
     };
   });
 
-  return [fieldSelectionStates, setSelectedFields];
+  return [fieldSelectionStates, setSelectionState];
 }

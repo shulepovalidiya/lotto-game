@@ -9,12 +9,12 @@ axiosRetry(axios, {
   retryCondition: () => true,
 });
 
-export interface ITicket {
+export interface Ticket {
   selectedNumber: Record<string, number[]>;
   isTicketWon: boolean;
 }
 
-export const submitTicket = async (ticket: ITicket, ticketId: number) => {
+export const submitTicket = async (ticket: Ticket, ticketId: number) => {
   try {
     await axios.post('https://httpstat.us/random/100-500', ticket);
     toast.success(`Билет ${ticketId} успешно отправлен!`);

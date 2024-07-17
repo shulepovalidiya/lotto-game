@@ -1,10 +1,10 @@
 import { generateNaturalSeries } from '../../common/utils/generateNaturalSeries';
 import * as Styled from '../../app/styles';
 import { Ticket } from '../Ticket';
-import { IGameConfig } from '../../common/constants/gameConfigs/types';
+import { GameConfig } from '../../common/constants/gameConfigs/types';
 
 interface GameProps {
-  config: IGameConfig;
+  config: GameConfig;
 }
 
 export function Game({ config }: GameProps) {

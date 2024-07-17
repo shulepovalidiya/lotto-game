@@ -4,9 +4,10 @@ interface ResultProps {
   isTicketWon: boolean;
 }
 
-export function Result(props: ResultProps) {
-  const { isTicketWon } = props;
+export function Result({ isTicketWon }: ResultProps) {
   return (
-    <Styled.Span>{isTicketWon ? 'Ого, вы выиграли! Поздравляем!' : 'В этот раз выиграть не получилось :('}</Styled.Span>
+    <Styled.Span>
+      {isTicketWon ? 'Ого, вы выиграли! Поздравляем!' : 'В этот раз выиграть не получилось :('}
+    </Styled.Span>
   );
 }

@@ -3,10 +3,10 @@ import { Cell } from '../Cell';
 import { pluralize } from '../../common/utils/pluralize';
 import { FieldState } from '../../common/hooks/useNumberSelection';
 import * as Styled from './styles';
-import { IFieldConfig } from '../../common/constants/gameConfigs/types';
+import { FieldConfig } from '../../common/constants/gameConfigs/types';
 
 interface FieldProps {
-  config: IFieldConfig;
+  config: FieldConfig;
   selectionState: FieldState;
 }
 
