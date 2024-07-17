@@ -16,7 +16,7 @@ export interface Ticket {
 
 export const submitTicket = async (ticket: Ticket, ticketId: number) => {
   try {
-    await axios.post('https://httpstat.us/random/100-500', ticket);
+    await axios.post('https://httpstat.us/random/100-500/cors', ticket);
     toast.success(`Билет ${ticketId} успешно отправлен!`);
   } catch (error) {
     toast.error(`Не получилось отправить билет ${ticketId} :(`);
