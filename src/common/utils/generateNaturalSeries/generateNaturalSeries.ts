@@ -1,6 +1,8 @@
 /**
  * Функция для генерации натурального ряда заданной длины.
+ *
  * @param length - Длина ряда.
+ *
  * @returns - Массив натуральных чисел от 1 до length.
  */
 export function generateNaturalSeries(length: number): number[] {

@@ -3,6 +3,7 @@ import { FieldConfig, GameConfig } from './types';
 
 /**
  * Конфигурация полей в билете. Определяется условиями задачи
+ *
  * @see {https://github.com/shulepovalidiya/lotto-game/blob/main/docs/games/8_out_of_19.md}
  */
 const FIELDS_CONFIG: readonly FieldConfig[] = [
@@ -29,7 +30,7 @@ const FIELDS_CONFIG: readonly FieldConfig[] = [
  *
  * @see {https://github.com/shulepovalidiya/lotto-game/blob/main/docs/games/8_out_of_19.md}
  */
-const isGameWon = (userCombination: number[][], winningCombination: number[][]): boolean => {
+const checkIsTicketWon = (userCombination: number[][], winningCombination: number[][]): boolean => {
   const matches = getCombinationMatches(userCombination, winningCombination);
 
   const matchesInFirstField = matches[0];
@@ -45,5 +46,5 @@ const isGameWon = (userCombination: number[][], winningCombination: number[][]):
 export const CONFIG_8_OUT_OF_19: GameConfig = {
   initialTicketsCount: 5,
   fieldsConfig: FIELDS_CONFIG,
-  isGameWon,
+  checkIsTicketWon,
 } as const;

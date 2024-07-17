@@ -1,7 +1,7 @@
 import { pluralize } from './pluralize';
 
 describe('test pluralize', () => {
-  test('happy path', () => {
+  it('should return correct word', () => {
     expect(
       pluralize(16, {
         one: 'билет',
@@ -11,7 +11,7 @@ describe('test pluralize', () => {
     ).toEqual('билетов');
   });
 
-  test('other', () => {
+  it('should return correct word for other options', () => {
     expect(
       pluralize(0.5, {
         one: 'билет',

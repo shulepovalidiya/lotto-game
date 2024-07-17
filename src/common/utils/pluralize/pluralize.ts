@@ -7,8 +7,10 @@ interface Plural {
 
 /**
  * Функция для плюрализации (склонения слова в зависимости от количества)
+ *
  * @param count количество
  * @param words варианты слова во множественном и единственном числе
+ *
  * @returns Возвращает слово в нужном склонении
  */
 export const pluralize = (count: number, words: Plural) => {

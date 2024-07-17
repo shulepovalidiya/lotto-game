@@ -1,7 +1,7 @@
 import { getCombinationMatches } from './getCombinationMatches';
 
 describe('test getCombinationMatches', () => {
-  test('all matches', () => {
+  it('should return length if all matches', () => {
     expect(
       getCombinationMatches(
         [
@@ -16,7 +16,7 @@ describe('test getCombinationMatches', () => {
     ).toEqual([5, 3]);
   });
 
-  test('nothing matches', () => {
+  it('should return zeros if nothing matches', () => {
     expect(
       getCombinationMatches(
         [
@@ -28,7 +28,7 @@ describe('test getCombinationMatches', () => {
     ).toEqual([0, 0]);
   });
 
-  test('partly matches', () => {
+  it('should return count of mutual numbers if partly matches', () => {
     expect(
       getCombinationMatches(
         [
@@ -41,5 +41,29 @@ describe('test getCombinationMatches', () => {
         ],
       ),
     ).toEqual([1, 2]);
+  });
+
+  it('should return zeros if winning combinations is empty', () => {
+    expect(
+      getCombinationMatches(
+        [
+          [1, 2, 3, 4, 5],
+          [3, 2, 1],
+        ],
+        [[], []],
+      ),
+    ).toEqual([0, 0]);
+  });
+
+  it('should return zeros if user combination is empty', () => {
+    expect(
+      getCombinationMatches(
+        [[], []],
+        [
+          [1, 2, 3, 4, 5],
+          [3, 2, 1],
+        ],
+      ),
+    ).toEqual([0, 0]);
   });
 });

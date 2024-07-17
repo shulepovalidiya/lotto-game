@@ -7,7 +7,7 @@ export const Button = styled.button<{ selected: boolean }>`
   justify-content: center;
   align-items: center;
   border: 1px solid #dddddd;
-  background-color: ${(props) => (props.selected ? '#FFD205' : '#ffffff')};
+  background-color: ${(props) => (props.selected ? '#ffd205' : '#ffffff')};
   box-sizing: border-box;
   padding: 0;
   &:hover {

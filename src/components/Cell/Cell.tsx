@@ -2,13 +2,13 @@ import * as Styled from './styles';
 
 interface CellProps {
   number: number;
-  selected: boolean;
+  isSelected: boolean;
   handleClick: (number: number) => void;
 }
 
-export function Cell({ number, selected, handleClick }: CellProps) {
+export function Cell({ number, isSelected, handleClick }: CellProps) {
   return (
-    <Styled.Button selected={selected} onClick={() => handleClick(number)}>
+    <Styled.Button selected={isSelected} onClick={() => handleClick(number)}>
       {number}
     </Styled.Button>
   );

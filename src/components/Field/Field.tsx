@@ -33,7 +33,7 @@ export function Field({ config, selectionState }: FieldProps) {
           <Cell
             key={integer}
             number={integer}
-            selected={selectedNumbers.includes(integer)}
+            isSelected={selectedNumbers.includes(integer)}
             handleClick={toggleNumber}
           />
         ))}
